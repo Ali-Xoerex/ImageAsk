@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Image Prompt to LLM</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+<header>
+  <h1>🖼️ ImageAsk</h1>
+  <span class="sub">via OpenRouter</span>
+</header>
+
+<section class="card">
+  <label class="row-label" for="apiKey">OpenRouter API key</label>
+  <div class="row">
+    <input id="apiKey" type="password" placeholder="sk-or-v1-…" autocomplete="off" />
+    <button id="saveKey" title="Save key locally">Save</button>
+  </div>
+  <div class="key-msg" id="keyMsg" role="status" aria-live="polite"></div>
+  <div class="hint">Get one at <a href="https://openrouter.ai/keys" target="_blank">openrouter.ai/keys</a>. Stored only in this browser.</div>
+</section>
+
+<section class="card">
+  <label class="row-label">1 · Add images from this page</label>
+  <div class="btn-grid">
+    <button id="pickBtn">🎯 Pick from page</button>
+    <button id="visibleBtn">👁️ Add visible</button>
+    <button id="allBtn">🖼️ Add all</button>
+    <button id="clearBtn" class="ghost">Clear</button>
+  </div>
+  <div id="thumbs" class="thumbs"><span class="empty">No images yet. Pick, add, or right-click an image → “Add image to LLM query”.</span></div>
+  <div class="hint" id="pageInfo"></div>
+</section>
+
+<section class="card">
+  <label class="row-label" for="modelSearch">2 · Model (search all OpenRouter models)</label>
+  <div class="model-wrap">
+    <div class="row">
+      <input id="modelSearch" type="text" placeholder="Search models… e.g. gpt-4o, claude, gemini, llama" autocomplete="off" />
+      <button id="modelRefresh" title="Reload model list from OpenRouter">↻</button>
+    </div>
+    <div id="modelList" class="model-list" hidden></div>
+  </div>
+  <div class="row between">
+    <label class="check"><input id="visionOnly" type="checkbox" checked /> Vision-capable only</label>
+    <span class="hint" id="modelCount"></span>
+  </div>
+  <div class="hint" id="modelSelected"></div>
+  <label class="row-label" for="prompt" style="margin-top:10px">3 · Your prompt</label>
+  <div class="row">
+    <select id="preset">
+      <option value="">Preset…</option>
+      <option value="Describe these images in detail.">Describe in detail</option>
+      <option value="What is shown in these images? List the main objects, text, and any notable details.">What is shown?</option>
+      <option value="Extract all text visible in these images (OCR). Preserve layout where possible.">OCR / extract text</option>
+      <option value="Compare these images. What are the similarities and differences?">Compare images</option>
+      <option value="Is there anything suspicious, unsafe, or misleading in these images? Explain.">Safety check</option>
+      <option value="Write alt text for each image, one line per image.">Alt text</option>
+    </select>
+  </div>
+  <textarea id="prompt" rows="4" placeholder="e.g. Describe these images and extract any text…"></textarea>
+  <div class="row between">
+    <label class="check"><input id="resize" type="checkbox" checked /> Downscale large images</label>
+    <button id="askBtn" class="primary"><span id="askSpin" class="spinner" hidden></span><span id="askLabel">✨ Ask LLM</span></button>
+  </div>
+</section>
+
+<section class="card">
+  <div class="row between">
+    <label class="row-label">Result</label>
+    <div>
+      <button id="sourceBtn" class="ghost" title="Toggle raw markdown source">Source</button>
+      <button id="copyBtn" class="ghost">Copy</button>
+    </div>
+  </div>
+  <div id="status" class="status"></div>
+  <div id="result" class="result">—</div>
+</section>
+
+<script src="popup.js"></script>
+</body>
+</html>

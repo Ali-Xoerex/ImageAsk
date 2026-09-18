@@ -1,0 +1,39 @@
+#__imgLlmHighlight {
+  position: absolute;
+  display: none;
+  border: 3px solid #1f6feb;
+  background: rgba(31, 111, 235, 0.25);
+  box-shadow: 0 0 0 2px #fff, 0 0 12px rgba(31, 111, 235, 0.8);
+  pointer-events: none;
+  z-index: 2147483646;
+  border-radius: 4px;
+}
+
+#__imgLlmBanner {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  align-items: center;
+  gap: 12px;
+  background: #111;
+  color: #fff;
+  font: 14px/1.4 system-ui, sans-serif;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid #1f6feb;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  z-index: 2147483647;
+}
+
+#__imgLlmBanner b {
+  background: #333;
+  padding: 1px 7px;
+  border-radius: 5px;
+}
+
+#__imgLlmCount {
+  color: #7ee787;
+  font-weight: 600;
+}
